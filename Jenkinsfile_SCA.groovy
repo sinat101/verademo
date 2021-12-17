@@ -44,7 +44,11 @@ pipeline {
                     withMaven(maven:'maven-3') {
                         script {
                             if(isUnix() == true) {
-                                sh "curl -sSL https://download.sourceclear.com/ci.sh | sh"
+                                sh '''
+                                    export SCAN_DIR="./app"
+                                    curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor 2>&1 | tee SCA_Results_${BUILD_TAG}.txt
+                                    grep -E 'CVE-2021-45046|CVE-2021-44228' SCA_Results_${BUILD_TAG}.txt
+                                '''
 
                                 // debug, no upload
                                 //sh "curl -sSL https://download.sourceclear.com/ci.sh | DEBUG=1 sh -s -- scan --no-upload"
