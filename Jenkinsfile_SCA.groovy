@@ -70,7 +70,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'SCA_Results_Build_${BUILD_NUMBER}.txt', onlyIfSuccessful: false
+            archiveArtifacts artifacts: 'SCA_Results_Build_*.txt', onlyIfSuccessful: false
         }
     }
 }
