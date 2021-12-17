@@ -48,7 +48,7 @@ pipeline {
                                     export SCAN_DIR="./app"
                                     touch SCA_Results_Build_${BUILD_NUMBER}.txt
                                     curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor 2>&1 | tee SCA_Results_Build_${BUILD_NUMBER}.txt
-                                    grep -E 'CVE-' SCA_Results_Build_${BUILD_NUMBER}.txt
+                                    grep -E 'CVE-2016-1000031|CVE-2021-22096' SCA_Results_Build_${BUILD_NUMBER}.txt
                                 '''
 
                                 // debug, no upload
