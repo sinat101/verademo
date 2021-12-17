@@ -47,7 +47,7 @@ pipeline {
                                 sh '''
                                     export SCAN_DIR="./app"
                                     touch SCA_Results_Build_${BUILD_NUMBER}.txt
-                                    curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
+                                    curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor 2>&1 | tee SCA_Results_Build_${BUILD_NUMBER}.txt
                                 '''
 
                                 // debug, no upload
