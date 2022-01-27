@@ -45,10 +45,11 @@ pipeline {
                         script {
                             if(isUnix() == true) {
                                 sh '''
+                                    export SRCCLR_SCM_TYPE="GIT"
+                                    export SRCCLR_SCM_URL="https://bitbucket.org/sinat1/verademo"
+                                    export SRCCLR_SCM_TOKEN="IGbSQ8FkZyLqjnJ4VOQH7D42"
                                     export SCAN_DIR="./app"
-                                    touch SCA_Results_Build_${BUILD_NUMBER}.txt
-                                    curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor 2>&1 | tee SCA_Results_Build_${BUILD_NUMBER}.txt
-                                    ! grep -E 'CVE-2021-45046|CVE-2021-22118' SCA_Results_Build_${BUILD_NUMBER}.txt
+                                    curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
                                 '''
 
                                 // debug, no upload
