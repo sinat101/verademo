@@ -45,9 +45,9 @@ pipeline {
                         script {
                             if(isUnix() == true) {
                                 sh '''
-                                    export SRCCLR_SCM_TYPE="GIT"
-                                    export SRCCLR_SCM_URL="https://bitbucket.org/sinat1/verademo"
-                                    export SRCCLR_SCM_TOKEN="IGbSQ8FkZyLqjnJ4VOQH7D42"
+                                    export SRCCLR_SCM_TYPE="GITHUB"
+                                    export SRCCLR_SCM_URL="https://github.com/sinat101/verademo"
+                                    export SRCCLR_SCM_TOKEN="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"
                                     export SCAN_DIR="./app"
                                     export SRCCLR_PR_ON=methods
                                     export SRCCLR_NO_BREAKING_UPDATES=true
