@@ -49,6 +49,9 @@ pipeline {
                                     export SRCCLR_SCM_URL="https://bitbucket.org/sinat1/verademo"
                                     export SRCCLR_SCM_TOKEN="IGbSQ8FkZyLqjnJ4VOQH7D42"
                                     export SCAN_DIR="./app"
+                                    export SRCCLR_PR_ON=methods
+                                    export SRCCLR_NO_BREAKING_UPDATES=true
+                                    export SRCCLR_IGNORE_CLOSED_PRS=false
                                     curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
                                 '''
 
