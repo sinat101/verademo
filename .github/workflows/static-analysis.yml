@@ -17,6 +17,10 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
         
+      - uses: actions/upload-artifact@v2
+        with:
+          path: 'target/verademo.war'
+        
       - name: Setup Java
         uses: actions/setup-java@v1 # Make java accessible on path so the uploadandscan action can run.
         with: 
@@ -27,7 +31,7 @@ jobs:
         with:
           appname: 'VeraDemo'
           createprofile: false
-          filepath: 'target/verademo.war'
+          filepath: 'verademo.war'
           vid: '${{ secrets.API_ID }}'
           vkey: '${{ secrets.API_KEY }}'
 #          createsandbox: 'true'
