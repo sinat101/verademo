@@ -19,7 +19,7 @@ jobs:
         
       - uses: actions/upload-artifact@v2
         with:
-          path: 'target/verademo.war'
+          path: 'app/target/verademo.war'
         
       - name: Setup Java
         uses: actions/setup-java@v1 # Make java accessible on path so the uploadandscan action can run.
