@@ -1,0 +1,38 @@
+name: Veracode Static Analysis Demo
+defaults:
+  run:
+    working-directory: ./app
+on: 
+  workflow_dispatch:
+    
+jobs:
+  static_analysis:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v2
+        
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+        
+      - name: Setup Java
+        uses: actions/setup-java@v1 # Make java accessible on path so the uploadandscan action can run.
+        with: 
+          java-version: '11'
+          
+      - name: Veracode Upload And Scan
+        uses: veracode/veracode-uploadandscan-action@0.2.1
+        with:
+          appname: 'VeraDemo'
+          createprofile: false
+          filepath: 'target/verademo.war'
+          vid: '${{ secrets.API_ID }}'
+          vkey: '${{ secrets.API_KEY }}'
+#          createsandbox: 'true'
+#          sandboxname: 'SANDBOXNAME'
+          scantimeout: 15
+#          exclude: '*.js'
+#          include: '*.war'
+#          criticality: 'VeryHigh'
