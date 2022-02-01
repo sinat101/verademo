@@ -1,5 +1,5 @@
 name: Veracode SCA Agent Demo
-on: workflow_dispatch
+on: workflow_dispatch:
 jobs:
   SCA:
     runs-on: ubuntu-latest
