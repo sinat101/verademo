@@ -13,6 +13,7 @@ jobs:
       - run: |
           ls
           pwd
+          ls
 
 
 #curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
