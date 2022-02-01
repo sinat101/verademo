@@ -13,11 +13,6 @@ jobs:
         
       - name: Build with Maven
         run: mvn -B package --file app/pom.xml
-        
-#      - name: Setup Java
-#        uses: actions/setup-java@v1 # Make java accessible on path so the uploadandscan action can run.
-#        with: 
-#          java-version: '11'
           
       - name: Pipeline Scan
         run: |
