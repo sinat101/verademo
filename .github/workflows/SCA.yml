@@ -16,9 +16,4 @@ jobs:
       - name: Check out main branch
         uses: actions/checkout@main
       - name: Execute SCA Agent
-        run: |
-          ls
-          pwd
-
-
-#curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
+        run: curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
