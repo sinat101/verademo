@@ -23,7 +23,7 @@ jobs:
           vkey: '${{ secrets.API_KEY }}'
 #          createsandbox: 'true'
 #          sandboxname: 'SANDBOXNAME'
-          scantimeout: 15
+          scantimeout: 0
 #          exclude: '*.js'
 #          include: '*.war'
 #          criticality: 'VeryHigh'
