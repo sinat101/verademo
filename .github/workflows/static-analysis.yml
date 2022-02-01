@@ -31,7 +31,7 @@ jobs:
         with:
           appname: 'VeraDemo'
           createprofile: false
-          filepath: 'verademo.war'
+          filepath: 'app/target/verademo.war'
           vid: '${{ secrets.API_ID }}'
           vkey: '${{ secrets.API_KEY }}'
 #          createsandbox: 'true'
