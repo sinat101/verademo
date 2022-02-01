@@ -1,7 +1,4 @@
 name: Veracode SCA Agent Demo
-#defaults:
-#  run:
-#    working-directory: ./app
 on: 
   workflow_dispatch:
     
@@ -14,6 +11,7 @@ jobs:
         SCAN_DIR: "./app"
     steps:
       - name: Check out main branch
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
+        
       - name: Execute SCA Agent
         run: curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
