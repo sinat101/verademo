@@ -11,7 +11,8 @@ jobs:
         SCAN_DIR: "./app"
     steps:
       - run: |
-          ls -la
+          ls
+          pwd
 
 
 #curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
