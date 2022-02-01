@@ -1,0 +1,26 @@
+name: Veracode Pipeline Scan Demo
+on: 
+  workflow_dispatch:
+    
+jobs:
+  pipeline_scan:
+    name: Pipeline Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v2
+        
+      - name: Build with Maven
+        run: mvn -B package --file app/pom.xml
+        
+#      - name: Setup Java
+#        uses: actions/setup-java@v1 # Make java accessible on path so the uploadandscan action can run.
+#        with: 
+#          java-version: '11'
+          
+      - name: Pipeline Scan
+        run: |
+          curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+          unzip -o pipeline-scan-LATEST.zip
+          java -jar pipeline-scan.jar -vid ${{ secrets.API_ID }} -vkey ${{ secrets.API_KEY }} -f app/target/verademo.war || true
