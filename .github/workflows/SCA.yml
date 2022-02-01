@@ -1,7 +1,7 @@
 name: Veracode SCA Agent Demo
 defaults:
   run:
-    working-directory: /
+    working-directory: ./
 on: 
   workflow_dispatch:
     
