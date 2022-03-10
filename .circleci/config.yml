@@ -32,7 +32,7 @@ jobs:
               -vkey ${VERACODE_API_KEY_SECRET} \
               -action UploadAndScan \
               -appname VeraDemo \
-              -version ${CIRCLE_PROJECT_REPONAME}_${CIRCLE_BUILD_NUM} \
+              -version ${CIRCLE_PROJECT_REPONAME}_CirclCI_Build_${CIRCLE_BUILD_NUM} \
               -filepath app/target/verademo.war \
               -createprofile false
 
