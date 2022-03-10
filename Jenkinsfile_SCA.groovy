@@ -59,7 +59,20 @@ pipeline {
                                             Set-ExecutionPolicy AllSigned -Scope Process -Force
                                             $ProgressPreference = "silentlyContinue"
                                             iex ((New-Object System.Net.WebClient).DownloadString('https://download.srcclr.com/ci.ps1'))
-                                            srcclr scan app/
+                                            srcclr scan app/ | Tee-Object -file SCA_Results.txt
+                                            $CVEs = "CVE-2017-1000487|CVE-2021-22118"
+                                            if (Select-String -Path SCA_Results.txt -Pattern $CVEs -quiet)
+                                            {
+                                                Write-Host "`nSpecified vulnerabilities found! Breaking the build!`n"
+                                                Select-String -Path SCA_Results.txt -Pattern $CVEs | Select -ExpandProperty Line
+                                                Write-Host "`n"
+                                                exit 1
+                                            }
+                                            else
+                                            {
+                                                Write-Host "`nSpecified vulns not found! SUCCESS!`n"
+                                                exit 0
+                                            }
                                             '''
                             }
                         }
