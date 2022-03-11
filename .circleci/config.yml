@@ -75,7 +75,11 @@ workflows:
 #      - static
   Pipeline Scan:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore:
+                - main
       - pipeline:
           requires:
             - build 
