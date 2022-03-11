@@ -64,4 +64,6 @@ workflows:
   Pipeline Scan:
     jobs:
       - build
-      - pipeline
+      - pipeline:
+          requires:
+            - build 
