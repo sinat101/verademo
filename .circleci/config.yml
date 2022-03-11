@@ -22,10 +22,17 @@ jobs:
       - run:
           name: Build with Maven
           command: mvn -B package --file app/pom.xml
+      - persist_to_workspace:
+          root: .     # relative path to our working directory
+          paths:      # file globs which will be persisted to the workspace
+           - app/target/
   static:
     docker:
       - image: veracode/api-wrapper-java:latest
     steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
       - run:
           name: Static Upload and Scan
           command: |
@@ -41,6 +48,9 @@ jobs:
     docker:
       - image: veracode/pipeline-scan:latest
     steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
       - run:
           name: Pipeline Scan
           command: |
