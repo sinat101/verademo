@@ -44,6 +44,7 @@ jobs:
       - run:
           name: Pipeline Scan
           command: |
+            chown -R $USER:$USER app/target
             java -jar /opt/veracode/pipeline-scan.jar \
               -vid ${VERACODE_API_KEY_ID} \
               -vkey ${VERACODE_API_KEY_SECRET} \
