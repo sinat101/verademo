@@ -26,7 +26,8 @@ pipeline {
             steps {
                 withMaven(maven:'maven-3') {
                     script {
-                            sh 'mvn clean package'
+                        sh 'cd app'    
+                        sh 'mvn clean package'
                     }
                 }
             }
