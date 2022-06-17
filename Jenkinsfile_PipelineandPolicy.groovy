@@ -56,8 +56,8 @@ pipeline {
                         script {
                             sh '''
                                 curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
-      							unzip -o pipeline-scan-LATEST.zip
-      							java -jar pipeline-scan.jar -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -f app/target/verademo.war -fs="Very High"
+                                unzip -o pipeline-scan-LATEST.zip
+                                java -jar pipeline-scan.jar -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -f app/target/verademo.war -fs="Very High"
                             '''
                             }
                     }
