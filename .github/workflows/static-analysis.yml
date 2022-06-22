@@ -14,7 +14,7 @@ jobs:
         run: mvn -B package --file app/pom.xml
           
       - name: Veracode Upload And Scan
-        uses: sinat101/veracode-uploadandscan-action@master
+        uses: veracode/veracode-uploadandscan-action@master
         with:
           appname: 'VeraDemo'
           createprofile: false
