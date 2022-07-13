@@ -54,7 +54,7 @@ pipeline {
                         script {
                             sh '''
                                 export SCAN_DIR="./app"
-                                curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --update-advisor
+                                curl -sSL https://download.sourceclear.com/ci.sh | bash -s scan --allow-dirty --update-advisor
                             '''
                         }
                     }
