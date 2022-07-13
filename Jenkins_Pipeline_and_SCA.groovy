@@ -41,7 +41,7 @@ pipeline {
                     credentialsId: 'veracode_login', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
                         sh 'curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
                         unzip zipFile: 'pipeline-scan-LATEST.zip'
-                        sh 'java -jar pipeline-scan.jar -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -f app/target/verademo.war -fs="Very High"'
+                        sh 'java -jar pipeline-scan.jar -vid ${VERACODE_API_ID} -vkey ${VERACODE_API_KEY} -f app/target/verademo.war || true'
                 }
             }
         }
