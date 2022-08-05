@@ -32,9 +32,9 @@ steps:
     targetType: 'inline'
     script: |
       touch results.json
-      git branch
       git config --global user.email "staghizadehmoghadam@veracode.com"
       git config --global user.name "Sina T"
+      git checkout -b main
       git add results.json
       git commit -m "Updating results.json file with result from ADO Build $(build.buildNumber)"
       git push origin master
