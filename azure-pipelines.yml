@@ -34,6 +34,6 @@ steps:
       git config --global user.name "Sina T"
       git add results.json
       git commit -m "Updating results.json file with result from ADO Build $(build.buildNumber)"
-      git push origin main
+      git push origin master
 - publish: $(System.DefaultWorkingDirectory)/results.json
   artifact: VeracodeBaseline
