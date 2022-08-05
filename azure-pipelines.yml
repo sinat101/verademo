@@ -3,10 +3,13 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 # This is an example of using VeraDemo Java test application with the Veracode Static Pipeline scanner.  A Veracode subscription is required.
+
 trigger:
-- main
+- none
+
 pool:
   vmImage: 'ubuntu-latest'
+
 steps:
 - task: Maven@3
   displayName: Build with Maven
@@ -26,6 +29,9 @@ steps:
     script: |
       curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
       unzip -o pipeline-scan-LATEST.zip
-      java -jar pipeline-scan.jar -vid $(VERACODE_API_ID) -vkey $(VERACODE_API_KEY) -f /home/vsts/work/1/s/app/target/verademo.war || true
+      java -jar pipeline-scan.jar -vid $(API_ID) -vkey $(API_KEY) -f $(System.DefaultWorkingDirectory)/app/target/verademo.war || true
+      git add results.json
+      git commit -m "Updating results.json file with result from ADO Build $(build.buildNumber)"
+      git push origin main
 - publish: $(System.DefaultWorkingDirectory)/results.json
   artifact: VeracodeBaseline
