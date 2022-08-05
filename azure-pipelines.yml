@@ -37,6 +37,6 @@ steps:
       git checkout -b main
       git add results.json
       git commit -m "Updating results.json file with result from ADO Build $(build.buildNumber)"
-      git push origin master
+      git push origin main
 - publish: $(System.DefaultWorkingDirectory)/results.json
   artifact: Pipeline Results
