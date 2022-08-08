@@ -14,10 +14,10 @@ jobs:
     
     steps:
       - name: Check out main branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Convert results.json to SARIF
-        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0.1.6
+        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0
         with:
           pipeline-results-json: results.json
           output-results-sarif: veracode-results.sarif
@@ -25,7 +25,7 @@ jobs:
           source-base-path-2: "^WEB-INF:app/src/main/webapp/WEB-INF"
           finding-rule-level: "4:3:0"
     
-      - name: upload sarif file to repository
-        uses: github/codeql-action/upload-sarif@v1
+      - name: Upload SARIF file to GitHub repo
+        uses: github/codeql-action/upload-sarif@v2
         with: # Path to SARIF file relative to the root of the repository
           sarif_file: veracode-results.sarif
