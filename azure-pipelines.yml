@@ -4,9 +4,6 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 # This is an example of using VeraDemo Java test application with the Veracode Static Pipeline scanner.  A Veracode subscription is required.
 
-#      curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
-#      unzip -o pipeline-scan-LATEST.zip
-#      java -jar pipeline-scan.jar -vid $(API_ID) -vkey $(API_KEY) -f $(System.DefaultWorkingDirectory)/app/target/verademo.war || true
 
 trigger:
 - none
@@ -15,23 +12,26 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-#- task: Maven@3
-#  displayName: Build with Maven
-#  inputs:
-#    mavenPomFile: 'app/pom.xml'
-#    mavenOptions: '-Xmx3072m'
-#    javaHomeOption: 'JDKVersion'
-#    jdkVersionOption: '1.8'
-#    jdkArchitectureOption: 'x64'
-#    publishJUnitResults: true
-#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#    goals: 'package'
+- task: Maven@3
+  displayName: Build with Maven
+  inputs:
+    mavenPomFile: 'app/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+
 - task: Bash@3
   displayName: Veracode Pipeline
   inputs:
     targetType: 'inline'
     script: |
-      touch results.json
+      curl -sSO https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+      unzip -o pipeline-scan-LATEST.zip
+      java -jar pipeline-scan.jar -vid $(API_ID) -vkey $(API_KEY) -f $(System.DefaultWorkingDirectory)/app/target/verademo.war || true
       git config --global user.email "staghizadehmoghadam@veracode.com"
       git config --global user.name "Sina T"
       git checkout -b main
