@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Check out main branch
+        uses: actions/checkout@v2
+        
       - name: Convert results.json to SARIF
         uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0.1.6
         with:
