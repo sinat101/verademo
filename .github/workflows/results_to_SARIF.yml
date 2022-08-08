@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Convert results.json to SARIF
-        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0
+        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v0.1.6
         with:
           pipeline-results-json: results.json
           output-results-sarif: veracode-results.sarif
