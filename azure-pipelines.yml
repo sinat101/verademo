@@ -18,6 +18,19 @@ steps:
     mavenPomFile: 'app/pom.xml'
     goals: 'package'
 
+#- task: Veracode@3
+#  displayName: Veracode Static Scan 
+#  inputs:
+#    ConnectionDetailsSelection: 'Credentials'
+#    apiId: '$(API_ID)'
+#    apiKey: '$(API_KEY)'
+#    veracodeAppProfile: 'VeraDemo'
+#    version: 'ADO_$(build.buildNumber)'
+#    filepath: '$(Build.Repository.LocalPath)/app/target/verademo.war'
+#    createProfile: false
+#    importResults: false
+#    failBuildOnPolicyFail: false
+
 - task: Bash@3
   displayName: Veracode Static Pipeline Scan
   inputs:
